@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
                 features = ".//Features//AddCustomer.feature",
                 //features = ".//Features//Login.feature",
                 glue = "StepDefinitions",
-                dryRun = true,
+                dryRun = false,
                 monochrome = true,
                 plugin =
                         {

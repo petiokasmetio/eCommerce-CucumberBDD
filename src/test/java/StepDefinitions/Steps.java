@@ -5,6 +5,7 @@ import PageObjects.LoginPage;
 import io.cucumber.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -66,34 +67,58 @@ public class Steps extends BaseClass{
     public void user_can_view_dashboard() {
         ac = new AddCustomer(driver);
         lp = new LoginPage(driver);
-        String title = ac.getPageTitle();
+        Assert.assertEquals("Dashboard / nopCommerce administration", ac.getPageTitle());
     }
     @When("User click on customers Menu")
-    public void user_click_on_customers_menu() {
-
+    public void user_click_on_customers_menu() throws InterruptedException {
+        ac = new AddCustomer(driver);
+        ac.clickCustomersMenu();
+        Thread.sleep(2000);
     }
-    @When("click on customers Menu item")
-    public void click_on_customers_menu_item() {
-
-    }
-    @When("click on Add new button")
-    public void click_on_add_new_button() {
-
-    }
+//    @Then("Click on Add new button")
+//    public void click_on_add_new_button() {
+//        ac = new AddCustomer(driver);
+//        ac.clickCustomersMenuItem();
+//        ac.clickAddNew();
+//    }
     @Then("User can view Add new customer page")
     public void user_can_view_add_new_customer_page() {
-
+        ac = new AddCustomer(driver);
+        Assert.assertEquals("Add a new customer / nopCommerce administration", ac.getPageTitle());
     }
     @When("User enter customer info")
     public void user_enter_customer_info() {
-
+        ac = new AddCustomer(driver);
+        String email = randomStringGenerator() + "@gmail.com";
+        ac.setPassword("test123");
+        ac.setEmail(email);
+        String firstName = randomStringGenerator();
+        ac.setFirstName(firstName);
+        String lastName = randomStringGenerator();
+        ac.setLastName(lastName);
+        ac.setGender("Male");
+        ac.setDateOfBirth("7/07/1977");
+        ac.setCompanyName("QACOMPANY");
+        ac.clickTax();
     }
     @When("click on Save button")
     public void click_on_save_button() {
-
+        ac = new AddCustomer(driver);
+        ac.clickSave();
     }
     @When("User can view confirmation message {string}")
-    public void user_can_view_confirmation_message(String string) {
+    public void user_can_view_confirmation_message(String msd) {
+        Assert.assertTrue(driver.findElement(By.tagName("body"))
+                .getText().contains("The new customer has been added successfully."));
+    }
 
+    @Then("Finish")
+    public void finish() {
+        ac = new AddCustomer(driver);
+        driver.findElement(By.cssSelector("body > div:nth-child(3) > aside:nth-child(2) > " +
+                "div:nth-child(2) > div:nth-child(4) > div:nth-child(1) > " +
+                "div:nth-child(1) > nav:nth-child(2) > ul:nth-child(1) > " +
+                "li:nth-child(4) > ul:nth-child(2) > li:nth-child(1) > " +
+                "a:nth-child(1) > p:nth-child(2)")).click();
     }
 }

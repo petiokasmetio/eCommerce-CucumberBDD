@@ -6,10 +6,10 @@ Scenario: Add new customer
   When Click on Login
   Then User can view Dashboard
   When User click on customers Menu
-  And click on customers Menu item
-  And click on Add new button
-  Then User can view Add new customer page
-  When User enter customer info
-  And click on Save button
-  And User can view confirmation message "The new customer has been added successfully."
-  And close browser
+  Then Finish
+#  Then Click on Add new button
+#  Then User can view Add new customer page
+#  When User enter customer info
+#  When click on Save button
+#  When User can view confirmation message "The new customer has been added successfully."
+#  When close browser

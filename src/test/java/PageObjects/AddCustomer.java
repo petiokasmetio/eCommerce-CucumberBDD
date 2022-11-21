@@ -16,8 +16,8 @@ public class AddCustomer {
         PageFactory.initElements(remoteDriver, this);
     }
 
-    By lnkCustomersMenu = By.xpath("(//a[@class='nav-link'])[21]");
-    By cmItemCustomers = By.xpath("(//a[@class='nav-link'])[22]");
+    By lnkCustomersMenu = By.xpath("//a[@href='#']//p[contains(text(),'Customers')]");
+    By cmItemCustomers = By.xpath("//a[@href='/Admin/Customer/List']//p[contains(text(),'Customers')]");
 
     By btnAddNew = By.xpath("//a[@class='btn btn-primary']");
 
