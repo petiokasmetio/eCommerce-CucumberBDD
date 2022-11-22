@@ -2,7 +2,9 @@ package StepDefinitions;
 
 import PageObjects.AddCustomer;
 import PageObjects.LoginPage;
+import PageObjects.SearchCustomer;
 import io.cucumber.java.en.*;
+import io.cucumber.java.eo.Se;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -75,17 +77,20 @@ public class Steps extends BaseClass{
         ac.clickCustomersMenu();
         Thread.sleep(2000);
     }
-//    @Then("Click on Add new button")
-//    public void click_on_add_new_button() {
-//        ac = new AddCustomer(driver);
-//        ac.clickCustomersMenuItem();
-//        ac.clickAddNew();
-//    }
+
+    @Then("Click on Add new button")
+    public void click_on_add_new_button() {
+        ac = new AddCustomer(driver);
+        ac.clickCustomersMenuItem();
+        ac.clickAddNew();
+    }
+
     @Then("User can view Add new customer page")
     public void user_can_view_add_new_customer_page() {
         ac = new AddCustomer(driver);
         Assert.assertEquals("Add a new customer / nopCommerce administration", ac.getPageTitle());
     }
+
     @When("User enter customer info")
     public void user_enter_customer_info() {
         ac = new AddCustomer(driver);
@@ -101,11 +106,13 @@ public class Steps extends BaseClass{
         ac.setCompanyName("QACOMPANY");
         ac.clickTax();
     }
+
     @When("click on Save button")
     public void click_on_save_button() {
         ac = new AddCustomer(driver);
         ac.clickSave();
     }
+
     @When("User can view confirmation message {string}")
     public void user_can_view_confirmation_message(String msd) {
         Assert.assertTrue(driver.findElement(By.tagName("body"))
@@ -120,5 +127,24 @@ public class Steps extends BaseClass{
                 "div:nth-child(1) > nav:nth-child(2) > ul:nth-child(1) > " +
                 "li:nth-child(4) > ul:nth-child(2) > li:nth-child(1) > " +
                 "a:nth-child(1) > p:nth-child(2)")).click();
+    }
+
+    //Steps for search customer
+
+    @Then("Enter customer Email")
+    public void enter_customer_email() {
+        sc = new SearchCustomer(driver);
+        sc.setEmail("victoria_victoria@nopCommerce.com");
+    }
+    @When("Click on search button")
+    public void click_on_search_button() throws InterruptedException {
+        sc = new SearchCustomer(driver);
+        sc.clickSearch();
+        Thread.sleep(2000);
+    }
+    @Then("User should found Email in the Search table")
+    public void user_should_found_email_in_the_search_table() {
+        boolean status = sc.searchCustomerByEmail("victoria_victoria@nopCommerce.com");
+        Assert.assertTrue(status);
     }
 }

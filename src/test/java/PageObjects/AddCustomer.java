@@ -13,13 +13,13 @@ public class AddCustomer {
     public AddCustomer(WebDriver remoteDriver)
     {
         driver = remoteDriver;
-        PageFactory.initElements(remoteDriver, this);
+        PageFactory.initElements(driver, this);
     }
 
     By lnkCustomersMenu = By.xpath("//a[@href='#']//p[contains(text(),'Customers')]");
     By cmItemCustomers = By.xpath("//a[@href='/Admin/Customer/List']//p[contains(text(),'Customers')]");
 
-    By btnAddNew = By.xpath("//a[@class='btn btn-primary']");
+    By btnAddNew = By.cssSelector("a[class='btn btn-primary']");
 
     By inpEmail = By.xpath("//input[@id='Email']");
     By inpPass = By.xpath("//input[@id='Password']");
