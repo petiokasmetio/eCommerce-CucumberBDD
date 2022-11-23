@@ -147,4 +147,22 @@ public class Steps extends BaseClass{
         boolean status = sc.searchCustomerByEmail("victoria_victoria@nopCommerce.com");
         Assert.assertTrue(status);
     }
+    //Search by firstname and lastname
+
+    @Then("Enter customer FirstName")
+    public void enter_customer_first_name() {
+        sc = new SearchCustomer(driver);
+        sc.setFirstName("Victoria");
+    }
+    @Then("Enter customer LastName")
+    public void enter_customer_last_name() {
+        sc = new SearchCustomer(driver);
+        sc.setLastName("Terces");
+    }
+    @Then("User should found Name in the Search table")
+    public void user_should_found_name_in_the_search_table() {
+        sc = new SearchCustomer(driver);
+        boolean status = sc.searchCustomerByName("Victoria Terces");
+        Assert.assertTrue(status);
+    }
 }

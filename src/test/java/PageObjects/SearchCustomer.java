@@ -12,6 +12,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class SearchCustomer extends BaseClass {
@@ -73,15 +74,15 @@ public class SearchCustomer extends BaseClass {
     public void setFirstName(String fname)
     {
         waitHelper.WaitForElement(inpFirstName, 15);
-        inpEmail.clear();
-        inpEmail.sendKeys(fname);
+        inpFirstName.clear();
+        inpFirstName.sendKeys(fname);
     }
 
     public void setLastName(String lname)
     {
-        waitHelper.WaitForElement(inpFirstName, 15);
-        inpEmail.clear();
-        inpEmail.sendKeys(lname);
+        waitHelper.WaitForElement(inpLastName, 15);
+        inpLastName.clear();
+        inpLastName.sendKeys(lname);
     }
 
     public void clickSearch()
@@ -114,6 +115,25 @@ public class SearchCustomer extends BaseClass {
                     flag = true;
                 }
             }
+        return flag;
+    }
+
+    public boolean searchCustomerByName(String Name)
+    {
+        boolean flag = false;
+        for (int i = 1; i <= getNumberOfRows(); i++)
+        {
+            String personalname = table.findElement(By
+                    .xpath("//table[@id='customers-grid']/tbody/tr["+ i + "]/td[3]")).getText();
+
+            String[] names = personalname.split(" ");  //Separating first name and last name
+            System.out.println(Arrays.toString(names));
+
+            if(names[0].equals("Victoria") && names[1].equals("Terces"))
+            {
+                flag = true;
+            }
+        }
         return flag;
     }
 }

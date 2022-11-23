@@ -1,4 +1,12 @@
 Feature: AddCustomer
+
+#  Background: Below steps are common for each scenario
+#    Given User launch Chrome browser
+#    When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F"
+#    When When User enter Email "admin@yourstore.com" and Password "admin"
+#    When Click on Login
+
+
 #Scenario: Add new customer
 #  Given User launch Chrome browser
 #  When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F"
@@ -14,7 +22,20 @@ Feature: AddCustomer
 #  When User can view confirmation message "The new customer has been added successfully."
 #  When close browser
 
-Scenario: Search Customer By EmailID
+#Scenario: Search Customer By EmailID
+#  Given User launch Chrome browser
+#  When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F"
+#  When When User enter Email "admin@yourstore.com" and Password "admin"
+#  When Click on Login
+#  Then User can view Dashboard
+#  When User click on customers Menu
+#  Then Finish
+#  And Enter customer Email
+#  When Click on search button
+#  Then User should found Email in the Search table
+#  Then close browser
+
+Scenario: Search Customer By Name
   Given User launch Chrome browser
   When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F"
   When When User enter Email "admin@yourstore.com" and Password "admin"
@@ -22,7 +43,8 @@ Scenario: Search Customer By EmailID
   Then User can view Dashboard
   When User click on customers Menu
   Then Finish
-  And Enter customer Email
+  And Enter customer FirstName
+  And Enter customer LastName
   When Click on search button
-  Then User should found Email in the Search table
+  Then User should found Name in the Search table
   Then close browser
