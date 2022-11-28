@@ -3,22 +3,60 @@ package StepDefinitions;
 import PageObjects.AddCustomer;
 import PageObjects.LoginPage;
 import PageObjects.SearchCustomer;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import io.cucumber.java.eo.Se;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class Steps extends BaseClass{
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Logger;
+
+
+public class Steps extends BaseClass
+{
+    @Before
+    public void setup() throws IOException  //Setup desired browser
+    {
+        configProp = new Properties();
+        FileInputStream configPropfile = new FileInputStream("config.properties");
+        configProp.load(configPropfile);
+        String br = configProp.getProperty("browser");
+        switch (br) {
+            case "chrome" -> {
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+            }
+            case "firefox" -> {
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+            }
+            case "edge" -> {
+                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+            }
+        }
+
+        logger = Logger.getLogger("eCommerce-CucumberBDD");
+        PropertyConfigurator.configure("Log4j.properties");
+        driver.manage().window().maximize();
+
+    }
+
 
     @Given("User launch Chrome browser")
     public void user_launch_chrome_browser() {
         lp = new LoginPage(driver);
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        logger.info("***********LAUNCHING BROWSER*************");
     }
     @When("User open URL {string}")
     public void user_open_url(String url) throws InterruptedException {

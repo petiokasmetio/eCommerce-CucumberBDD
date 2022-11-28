@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="2" time="25.675">
+    <testcase classname="AddCustomer" name="Search Customer By EmailID" time="13.874">
+        <system-out><![CDATA[Given User launch Chrome browser............................................passed
+When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F".passed
+When When User enter Email "admin@yourstore.com" and Password "admin".......passed
+When Click on Login.........................................................passed
+Then User can view Dashboard................................................passed
+When User click on customers Menu...........................................passed
+Then Finish.................................................................passed
+And Enter customer Email....................................................passed
+When Click on search button.................................................passed
+Then User should found Email in the Search table............................passed
+Then close browser..........................................................passed
+]]></system-out>
+    </testcase>
+    <testcase classname="AddCustomer" name="Search Customer By Name" time="11.577">
+        <system-out><![CDATA[Given User launch Chrome browser............................................passed
+When User open URL "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F".passed
+When When User enter Email "admin@yourstore.com" and Password "admin".......passed
+When Click on Login.........................................................passed
+Then User can view Dashboard................................................passed
+When User click on customers Menu...........................................passed
+Then Finish.................................................................passed
+And Enter customer FirstName................................................passed
+And Enter customer LastName.................................................passed
+When Click on search button.................................................passed
+Then User should found Name in the Search table.............................passed
+Then close browser..........................................................passed
+]]></system-out>
+    </testcase>
+</testsuite>
